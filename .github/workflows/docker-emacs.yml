@@ -1,0 +1,35 @@
+name: Emacs
+
+on:
+  workflow_dispatch:
+
+env:
+  # Use docker.io for Docker Hub if empty
+  REGISTRY: ghcr.io
+  # github.repository as <account>/<repo>
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  compile:
+    runs-on: ubuntu-latest
+    
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: build emacs
+        run: |
+            chmod +x build.sh
+            ./build.sh
+      - name: archive
+        run: |
+            zip -r emacs.zip emacs/
+      - name: upload compiled emacs as artefact
+        uses: actions/upload-artifact@v3
+        with:
+          name: emacs-broadwayd
+          path: emacs.zip
+              

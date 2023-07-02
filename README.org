@@ -1,0 +1,13 @@
+#+title: Run emacs in the browser
+
+* Installing and building
+#+begin_src sh
+$ git clone https://www.github.com/domse007/emacs2web
+$ cd emacs2web
+$ docker build ./ -t emacs2web
+#+end_src
+
+* Running
+#+begin_src sh
+$ docker run -dp 8085:8085 emacs2web
+#+end_src
