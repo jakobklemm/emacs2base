@@ -14,7 +14,7 @@ RUN sudo apt-get -y install xorg libgtk-3-dev libx11 libxpm4
 RUN git clone https://www.github.com/emacs-mirror/emacs --depth=1
 WORKDIR $HOME/emacs
 RUN ./autogen.sh 
-RUN ./configure --with-json --with-xpm=ifavailable --with-gif=ifavailable --with-native-compilation --with-pgtk --with-jpeg --with-png --with-rsvg --with-tiff --with-wide-int --with-xft --with-xml2 --with-mailutils --with-xpm CFLAGS="-O3 -march=native"
+RUN ./configure --with-json --with-xpm=ifavailable --with-gif=ifavailable --with-native-compilation --with-pgtk --with-jpeg --with-png --with-rsvg --with-tiff --with-wide-int --with-xft --with-xml2 --with-mailutils --with-xpm CFLAGS="-O3 -march=x86-64"
 RUN make -j$(nproc)
 RUN make install
 WORKDIR $HOME
