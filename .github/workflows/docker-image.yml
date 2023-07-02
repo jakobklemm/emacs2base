@@ -75,3 +75,15 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+
+      - name: sys info
+        run: lscpu >> info.txt
+      
+      - name: sys info
+        run: lscpu
+            
+      - name: upload  as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: cpuinfo
+          path: info.txt
